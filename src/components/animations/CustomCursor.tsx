@@ -3,7 +3,6 @@ import { motion, useSpring, useMotionValue } from "framer-motion";
 
 const CustomCursor = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [coords, setCoords] = useState({ x: 0, y: 0 });
 
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
@@ -16,7 +15,6 @@ const CustomCursor = () => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseX.set(e.clientX);
       mouseY.set(e.clientY);
-      setCoords({ x: e.clientX, y: e.clientY });
 
       const target = e.target as HTMLElement;
       setIsHovered(!!target.closest("button, a, .tilt-card"));

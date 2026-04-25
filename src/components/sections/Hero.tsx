@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion";
+import { useLenis } from "lenis/react";
 import { ArrowDown, Download, Sparkles, Terminal } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import HeroScene from "../three/HeroScene";
@@ -31,8 +32,14 @@ const useTypewriter = (text: string, speed = 55, startDelay = 0) => {
 
 const Hero = () => {
   const ref = useRef<HTMLElement>(null);
-  const scrollToProjects = () =>
-    document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+  const lenis = useLenis();
+  const scrollToProjects = () => {
+    if (lenis) {
+      lenis.scrollTo("#projects", { duration: 1.5 });
+    } else {
+      document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   // Scroll-driven parallax for the hero foreground
   const { scrollYProgress } = useScroll({

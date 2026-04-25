@@ -55,15 +55,13 @@ const SceneSection = ({
 
   const opacity = useTransform(smooth, [0, 0.18, 0.82, 1], [0.3, 1, 1, 0.3]);
   const scale = useTransform(smooth, [0, 0.22, 0.78, 1], [0.96, 1, 1, 0.96]);
-  const blur = useTransform(smooth, [0, 0.18, 0.82, 1], ["10px", "0px", "0px", "10px"]);
-  const filter = useTransform(blur, (b) => `blur(${b})`);
   const contentY = useTransform(smooth, [0, 1], ["8%", "-8%"]);
 
   return (
     <motion.section
       id={id}
       ref={ref}
-      style={{ opacity, scale, filter }}
+      style={{ opacity, scale }}
       className="relative min-h-[50vh]"
     >
       {showChapterIntro && (

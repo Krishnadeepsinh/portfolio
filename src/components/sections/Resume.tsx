@@ -248,11 +248,11 @@ const Resume = () => {
                     <section>
                       <h4 className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground mb-4">Contact Protocol</h4>
                       <div className="space-y-3">
-                        <a href="https://github.com/Krishnadeepsinh" target="_blank" rel="noreferrer" className="flex items-center gap-3 group">
+                        <a href="https://github.com/Krishnadeepsinh" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group">
                           <div className="h-8 w-8 rounded bg-white/5 grid place-items-center text-muted-foreground group-hover:text-primary transition-colors"><Github size={16} /></div>
                           <span className="font-mono text-xs text-muted-foreground group-hover:text-foreground">github.com/KSC</span>
                         </a>
-                        <a href="https://www.linkedin.com/in/krishnadeep-chudasama-483772311" target="_blank" rel="noreferrer" className="flex items-center gap-3 group">
+                        <a href="https://www.linkedin.com/in/krishnadeep-chudasama-483772311" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 group">
                           <div className="h-8 w-8 rounded bg-white/5 grid place-items-center text-muted-foreground group-hover:text-primary transition-colors"><Linkedin size={16} /></div>
                           <span className="font-mono text-xs text-muted-foreground group-hover:text-foreground">linkedin/in/KSC</span>
                         </a>

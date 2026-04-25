@@ -150,18 +150,10 @@ function Electrons({ scrollRef }: { scrollRef: React.MutableRefObject<number> })
   return (
     <group>
       {orbits.map((o, i) => (
-        <Trail
-          key={i}
-          width={0.6}
-          length={5}
-          color={o.color as any}
-          attenuation={(t) => t * t}
-        >
-          <mesh ref={(el) => (refs.current[i] = el)}>
-            <sphereGeometry args={[0.07, 16, 16]} />
-            <meshStandardMaterial color={o.color} emissive={o.color} emissiveIntensity={2.5} />
-          </mesh>
-        </Trail>
+        <mesh key={i} ref={(el) => (refs.current[i] = el)}>
+          <sphereGeometry args={[0.07, 16, 16]} />
+          <meshStandardMaterial color={o.color} emissive={o.color} emissiveIntensity={2.5} />
+        </mesh>
       ))}
     </group>
   );
@@ -217,13 +209,15 @@ const HeroScene = ({ showControls = false }: HeroSceneProps) => {
   return (
     <Canvas
       camera={{ position: [0, 0, 7], fov: 60 }}
-      dpr={[1, 1]}
+      dpr={[1, 2]} // Allow up to 2x for quality on high-end, but limit for low-end
+      performance={{ min: 0.5 }}
       gl={{ 
         antialias: false, 
         alpha: true, 
-        powerPreference: "default",
+        powerPreference: "high-performance",
         stencil: false,
-        depth: true
+        depth: true,
+        precision: "lowp" // Lower precision for fragments to save GPU cycles
       }}
     >
       <ambientLight intensity={0.35} />

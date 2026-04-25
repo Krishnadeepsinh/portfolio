@@ -143,21 +143,37 @@ function ProjectCard({ p, i }: CardProps) {
              <div className="absolute inset-0 grid-overlay opacity-50" />
           </motion.div>
 
-          {/* Live preview iframe */}
+          {/* Live preview iframe - Only load on hover for performance */}
           <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted shrink-0">
-            <iframe
-              src={p.url}
-              title={p.title}
-              loading="lazy"
-              className="h-full w-full origin-top-left"
-              style={{
-                transform: "scale(0.5)",
-                width: "200%",
-                height: "200%",
-                border: 0,
-                pointerEvents: "none",
-              }}
-            />
+            {hover ? (
+              <iframe
+                src={p.url}
+                title={p.title}
+                loading="lazy"
+                sandbox="allow-scripts allow-same-origin"
+                className="h-full w-full origin-top-left"
+                style={{
+                  transform: "scale(0.5)",
+                  width: "200%",
+                  height: "200%",
+                  border: 0,
+                  pointerEvents: "none",
+                }}
+              />
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center bg-background/20 backdrop-blur-sm">
+                <div className="flex flex-col items-center gap-2 opacity-40">
+                  <div className="h-1 bg-primary/20 w-32 rounded-full overflow-hidden">
+                    <motion.div 
+                      animate={{ x: ["-100%", "100%"] }}
+                      transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
+                      className="h-full bg-primary/40 w-1/2"
+                    />
+                  </div>
+                  <span className="font-mono text-[9px] uppercase tracking-tighter">Standby Mode</span>
+                </div>
+              </div>
+            )}
             <div
               className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent transition-opacity ${
                 hover ? "opacity-60" : "opacity-90"
@@ -217,7 +233,7 @@ function ProjectCard({ p, i }: CardProps) {
               <a
                 href={p.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-primary hover:text-glow-primary group/link"
               >
                 Visit Live Site
