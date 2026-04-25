@@ -28,26 +28,16 @@ const CustomCursor = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999] hidden lg:block">
-      {/* Outer Trailing Ring */}
       <motion.div
         style={{ x: cursorX, y: cursorY, translateX: "-50%", translateY: "-50%" }}
         animate={{
-          scale: isHovered ? 2.2 : 1,
-          opacity: isHovered ? 0.3 : 0.8,
+          scale: isHovered ? 2.5 : 1,
+          backgroundColor: isHovered ? "hsl(var(--primary) / 0)" : "hsl(var(--primary) / 0.6)",
+          borderWidth: isHovered ? "1.5px" : "0px",
+          borderColor: "hsl(var(--primary) / 0.8)",
         }}
         transition={{ duration: 0.2, ease: "easeOut" }}
-        className="absolute h-10 w-10 rounded-full border-[1.5px] border-primary/50 shadow-[0_0_15px_hsl(var(--primary)/0.3)] backdrop-blur-sm"
-      />
-      
-      {/* Inner Quick Dot */}
-      <motion.div
-        style={{ x: mouseX, y: mouseY, translateX: "-50%", translateY: "-50%" }}
-        animate={{
-          scale: isHovered ? 0 : 1,
-          opacity: isHovered ? 0 : 1,
-        }}
-        transition={{ duration: 0.15 }}
-        className="absolute h-2 w-2 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.8)]"
+        className="absolute h-4 w-4 rounded-full backdrop-blur-[2px]"
       />
     </div>
   );
