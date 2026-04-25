@@ -48,7 +48,7 @@ interface CardProps {
 }
 
 function ProjectCard({ p, i }: CardProps) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
   const [hover, setHover] = useState(false);
 
   // Use MotionValues for high-performance animation (no re-renders)
@@ -111,12 +111,15 @@ function ProjectCard({ p, i }: CardProps) {
       transition={{ duration: 1, delay: i * 0.18, ease: [0.22, 1, 0.36, 1] }}
       style={{ perspective: 1200 }}
     >
-        <motion.div
+        <motion.a
+          href={p.url}
+          target="_blank"
+          rel="noopener noreferrer"
           ref={ref}
           onMouseMove={handleMove}
           onMouseEnter={() => setHover(true)}
           onMouseLeave={handleLeave}
-          className={`group relative flex flex-col h-full overflow-hidden rounded-2xl border ${p.border} bg-gradient-card backdrop-blur-xl transition-shadow duration-500 ${
+          className={`group relative flex flex-col h-full overflow-hidden rounded-2xl border ${p.border} bg-gradient-card backdrop-blur-xl transition-shadow duration-500 cursor-none ${
             hover ? p.glow : "shadow-card"
           }`}
           style={{
@@ -213,18 +216,13 @@ function ProjectCard({ p, i }: CardProps) {
                 ))}
               </div>
 
-              <a
-                href={p.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-primary hover:text-glow-primary group/link"
-              >
+              <div className="mt-8 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-primary hover:text-glow-primary group/link">
                 Visit Live Site
                 <ExternalLink
                   size={12}
                   className="transition-transform group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5"
                 />
-              </a>
+              </div>
             </div>
           </div>
 
@@ -237,7 +235,7 @@ function ProjectCard({ p, i }: CardProps) {
               hover ? "opacity-30" : "opacity-0"
             }`}
           />
-        </motion.div>
+        </motion.a>
     </motion.div>
   );
 }
