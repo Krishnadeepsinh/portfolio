@@ -25,18 +25,20 @@ export const TextScramble = ({
     const totalFrames = duration * 60; // 60fps
     iterations.current += 1;
 
-    const scrambled = text
-      .split("")
-      .map((char, index) => {
-        if (char === " ") return " ";
-        if (iterations.current / totalFrames > index / text.length) {
-          return text[index];
-        }
-        return CHARSET[Math.floor(Math.random() * CHARSET.length)];
-      })
-      .join("");
+    if (iterations.current % 3 === 0 || iterations.current >= totalFrames) {
+      const scrambled = text
+        .split("")
+        .map((char, index) => {
+          if (char === " ") return " ";
+          if (iterations.current / totalFrames > index / text.length) {
+            return text[index];
+          }
+          return CHARSET[Math.floor(Math.random() * CHARSET.length)];
+        })
+        .join("");
 
-    setOutput(scrambled);
+      setOutput(scrambled);
+    }
 
     if (iterations.current < totalFrames) {
       frameId.current = requestAnimationFrame(scramble);

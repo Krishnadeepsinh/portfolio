@@ -125,7 +125,6 @@ const Hero = () => {
               rotateY: rotY,
               x: transX,
               y: transY,
-              filter: useTransform(titleBlur, (b) => `blur(${b})`),
               transformStyle: "preserve-3d",
               perspective: 1000,
             }}
