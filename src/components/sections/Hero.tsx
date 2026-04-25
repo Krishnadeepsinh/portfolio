@@ -194,26 +194,6 @@ const Hero = () => {
 
       </motion.div>
 
-      {/* Scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2.8, duration: 1 }}
-        style={{ opacity: contentOpacity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
-      >
-        <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-          Scroll
-        </span>
-        <div className="relative h-10 w-5 rounded-full border border-primary/40 overflow-hidden">
-          <motion.div
-            animate={{ y: [-6, 22, -6] }}
-            transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute left-1/2 top-1 h-1.5 w-1.5 -translate-x-1/2 rounded-full bg-primary shadow-glow-primary"
-          />
-        </div>
-        <ArrowDown size={12} className="text-primary animate-pulse" />
-      </motion.div>
     </section>
   );
 };
