@@ -28,20 +28,27 @@ const CustomCursor = () => {
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999] hidden lg:block">
+      {/* Outer Trailing Ring */}
       <motion.div
         style={{ x: cursorX, y: cursorY, translateX: "-50%", translateY: "-50%" }}
-        className="flex items-center justify-center"
-      >
-        <div className="h-6 w-6 rounded-full border border-primary/30 relative">
-          {/* Minimal crosshair */}
-          <div className="absolute top-0 left-1/2 h-2 w-px bg-primary/40 -translate-x-1/2" />
-          <div className="absolute bottom-0 left-1/2 h-2 w-px bg-primary/40 -translate-x-1/2" />
-          <div className="absolute top-1/2 left-0 h-px w-2 bg-primary/40 -translate-y-1/2" />
-          <div className="absolute top-1/2 right-0 h-px w-2 bg-primary/40 -translate-y-1/2" />
-          {/* Focus dot */}
-          <div className="absolute top-1/2 left-1/2 h-1 w-1 bg-primary rounded-full -translate-x-1/2 -translate-y-1/2" />
-        </div>
-      </motion.div>
+        animate={{
+          scale: isHovered ? 2.2 : 1,
+          opacity: isHovered ? 0.3 : 0.8,
+        }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="absolute h-10 w-10 rounded-full border-[1.5px] border-primary/50 shadow-[0_0_15px_hsl(var(--primary)/0.3)] backdrop-blur-sm"
+      />
+      
+      {/* Inner Quick Dot */}
+      <motion.div
+        style={{ x: mouseX, y: mouseY, translateX: "-50%", translateY: "-50%" }}
+        animate={{
+          scale: isHovered ? 0 : 1,
+          opacity: isHovered ? 0 : 1,
+        }}
+        transition={{ duration: 0.15 }}
+        className="absolute h-2 w-2 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.8)]"
+      />
     </div>
   );
 };
