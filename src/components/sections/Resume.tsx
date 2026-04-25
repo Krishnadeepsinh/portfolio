@@ -116,7 +116,7 @@ const Resume = () => {
                 onClick={() => setIsPreviewOpen(true)}
                 className="mt-6 font-mono text-[10px] uppercase tracking-[0.3em] text-primary hover:text-glow-primary transition-all underline decoration-primary/30 underline-offset-4"
               >
-                View Full Dossier
+                View Full Profile
               </button>
             </div>
           </div>
@@ -146,7 +146,7 @@ const Resume = () => {
                     <FileText size={18} />
                   </div>
                   <div>
-                    <h3 className="font-display font-bold text-lg leading-tight">Professional Dossier</h3>
+                    <h3 className="font-display font-bold text-lg leading-tight">Professional Profile</h3>
                     <p className="font-mono text-[10px] text-muted-foreground uppercase tracking-widest">Archive_System / Verified_User</p>
                   </div>
                 </div>
@@ -293,7 +293,7 @@ const Resume = () => {
                     onClick={() => setIsPreviewOpen(false)}
                     className="px-6 py-2 rounded-md bg-primary text-background font-mono text-[10px] uppercase tracking-widest hover:shadow-glow-primary transition-all font-bold"
                   >
-                    Close Dossier
+                    Close Profile
                   </button>
                 </div>
               </div>
