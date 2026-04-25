@@ -14,6 +14,7 @@ const projects = [
     accent: "from-primary to-accent",
     glow: "shadow-glow-primary",
     border: "border-primary/30",
+    image: "/projects/nexus.png",
   },
   {
     title: "FleetFlow",
@@ -25,6 +26,7 @@ const projects = [
     accent: "from-secondary to-primary",
     glow: "shadow-glow-secondary",
     border: "border-secondary/30",
+    image: "/projects/fleetflow.png",
   },
   {
     title: "Audit Tracker",
@@ -36,6 +38,7 @@ const projects = [
     accent: "from-accent to-secondary",
     glow: "shadow-glow-accent",
     border: "border-accent/30",
+    image: "/projects/audit.png",
   },
 ];
 
@@ -143,40 +146,20 @@ function ProjectCard({ p, i }: CardProps) {
              <div className="absolute inset-0 grid-overlay opacity-50" />
           </motion.div>
 
-          {/* Live preview iframe - Only load on hover for performance */}
-          <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted shrink-0">
-            {hover ? (
-              <iframe
-                src={p.url}
-                title={p.title}
-                loading="lazy"
-                sandbox="allow-scripts allow-same-origin"
-                className="h-full w-full origin-top-left"
-                style={{
-                  transform: "scale(0.5)",
-                  width: "200%",
-                  height: "200%",
-                  border: 0,
-                  pointerEvents: "none",
-                }}
-              />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center bg-background/20 backdrop-blur-sm">
-                <div className="flex flex-col items-center gap-2 opacity-40">
-                  <div className="h-1 bg-primary/20 w-32 rounded-full overflow-hidden">
-                    <motion.div 
-                      animate={{ x: ["-100%", "100%"] }}
-                      transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-                      className="h-full bg-primary/40 w-1/2"
-                    />
-                  </div>
-                  <span className="font-mono text-[9px] uppercase tracking-tighter">Standby Mode</span>
-                </div>
-              </div>
-            )}
+          {/* Static project screenshot for performance */}
+          <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted shrink-0 group">
+            <motion.img
+              src={p.image}
+              alt={p.title}
+              className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+              style={{
+                filter: hover ? "brightness(1) contrast(1)" : "brightness(0.7) contrast(1.1) grayscale(0.5)",
+              }}
+            />
+            
             <div
-              className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent transition-opacity ${
-                hover ? "opacity-60" : "opacity-90"
+              className={`pointer-events-none absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent transition-opacity duration-500 ${
+                hover ? "opacity-30" : "opacity-70"
               }`}
             />
             <div className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${p.accent} opacity-10 mix-blend-overlay`} />
@@ -277,7 +260,7 @@ const Projects = () => {
             transition={{ delay: 0.4, duration: 0.7 }}
             className="mt-3 sm:mt-4 font-mono text-xs sm:text-sm text-muted-foreground px-4"
           >
-            Live deployments — interact directly with the cards
+            High-performance snapshots — zero load latency
           </motion.p>
         </div>
 
