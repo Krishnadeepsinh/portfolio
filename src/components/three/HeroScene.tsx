@@ -217,11 +217,11 @@ const HeroScene = ({ showControls = false }: HeroSceneProps) => {
   return (
     <Canvas
       camera={{ position: [0, 0, 7], fov: 60 }}
-      dpr={[1, 1.2]}
+      dpr={[1, 1]}
       gl={{ 
         antialias: false, 
         alpha: true, 
-        powerPreference: "high-performance",
+        powerPreference: "default",
         stencil: false,
         depth: true
       }}

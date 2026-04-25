@@ -127,15 +127,7 @@ function TiltCard({ skill, index }: TiltCardProps) {
                 {skill.category}
               </div>
             </div>
-            {hover && (
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="font-mono text-[8px] text-primary"
-              >
-                0x{index.toString(16).toUpperCase()}..OK
-              </motion.div>
-            )}
+
           </div>
           <div>
             <div className="font-display font-bold text-sm sm:text-base text-foreground group-hover:text-glow-primary transition-all break-words">

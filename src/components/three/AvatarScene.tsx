@@ -52,7 +52,11 @@ const AvatarScene = () => {
     []
   );
   return (
-    <Canvas camera={{ position: [0, 0, 5], fov: 55 }} dpr={[1, 1.5]}>
+    <Canvas 
+      camera={{ position: [0, 0, 5], fov: 55 }} 
+      dpr={[1, 1]} 
+      gl={{ antialias: false, alpha: true, powerPreference: "default" }}
+    >
       <ambientLight intensity={0.5} />
       <pointLight position={[3, 3, 3]} intensity={1} color="#F7F7FF" />
       <pointLight position={[-3, -3, 3]} intensity={1} color="#475EF5" />
