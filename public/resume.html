@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishnadeepsinh Chudasama - Resume</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --text-main: #1f2937;
+            --text-light: #6b7280;
+            --border: #e5e7eb;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            color: var(--text-main);
+            line-height: 1.5;
+            padding: 40px;
+            background: #fff;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 28px;
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: var(--primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 13px;
+            color: var(--text-light);
+        }
+        section {
+            margin-bottom: 25px;
+        }
+        h2 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .project-item {
+            margin-bottom: 15px;
+        }
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+        .project-title {
+            font-weight: 700;
+            font-size: 15px;
+        }
+        .project-date {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+        .project-stack {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            font-size: 13px;
+            margin-bottom: 4px;
+            position: relative;
+            padding-left: 15px;
+        }
+        li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+        .skills-grid {
+            display: grid;
+            grid-template-cols: 1fr 1fr;
+            gap: 20px;
+        }
+        .skill-cat {
+            font-weight: 700;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+        .skill-list {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+        @media print {
+            body { padding: 0; }
+            .container { max-width: 100%; }
+            header { padding-top: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Krishnadeepsinh Chudasama</h1>
+            <div class="subtitle">Full Stack Developer | AI/ML Enthusiast</div>
+            <div class="contact-info">
+                <span>📍 Bhavnagar, Gujarat</span>
+                <span>📧 chudasamakrishnadeep3@gmail.com</span>
+                <span>🔗 github.com/Krishnadeepsinh</span>
+                <span>🔗 linkedin/in/krishnadeep-chudasama</span>
+            </div>
+        </header>
+
+        <section>
+            <h2>Summary</h2>
+            <p style="font-size: 13px;">Performance-focused Full Stack Developer and BCA student with experience in building scalable research and logistics platforms. Recognized as an AI4Dev '26 National Finalist for developing transformative AI technologies. Expertise in bridging robust backend architectures with seamless, high-end frontend experiences.</p>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div class="project-header">
+                <div>
+                    <span class="project-title">Bachelor of Computer Applications (BCA)</span>
+                    <div style="font-size: 13px; color: var(--text-light);">Shree Swaminarayan College of Computer Science (MKBU)</div>
+                </div>
+                <span class="project-date">2023 - 2026</span>
+            </div>
+            <p style="font-size: 13px; margin-top: 5px;">Current Stats: 7.84 CGPA (Avg. 5 Semesters)</p>
+        </section>
+
+        <section>
+            <h2>Achievements & Certifications</h2>
+            <div class="project-item">
+                <div class="project-header">
+                    <span class="project-title">Finalist | AI4Dev '26 National Hackathon</span>
+                    <span class="project-date">March 2026</span>
+                </div>
+                <ul>
+                    <li>Selected as a national finalist among 100+ teams for building AI-enable technologies for global development.</li>
+                    <li>Presented transformative tech solutions at PSG College of Technology, Coimbatore.</li>
+                </ul>
+            </div>
+            <div class="project-item" style="margin-top: 10px;">
+                <div class="project-header">
+                    <span class="project-title">Computer Hardware & Networking Certification</span>
+                    <span class="project-date">2024</span>
+                </div>
+                <ul>
+                    <li>Completed an intensive 45-hour specialized course affiliated by MKBU.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Core Projects</h2>
+            <div class="project-item">
+                <div class="project-header">
+                    <span class="project-title">Nexus Scientific</span>
+                    <span class="project-date">React, Vite, Vercel</span>
+                </div>
+                <ul>
+                    <li>Developed an innovation platform to showcase scientific research with sub-1s load times.</li>
+                    <li>Integrated modern UI components to enhance research publication visibility.</li>
+                </ul>
+            </div>
+            <div class="project-item">
+                <div class="project-header">
+                    <span class="project-title">FleetFlow</span>
+                    <span class="project-date">TypeScript, React, Tailwind</span>
+                </div>
+                <ul>
+                    <li>Built an end-to-end fleet management dashboard for real-time logistics monitoring.</li>
+                    <li>Leveraged TypeScript for robust data handling and real-time state synchronization.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div>
+                    <div class="skill-cat">Languages</div>
+                    <div class="skill-list">JavaScript, Python, Java, C/C++, PHP, SQL, PL-SQL</div>
+                </div>
+                <div>
+                    <div class="skill-cat">Frameworks & Tools</div>
+                    <div class="skill-list">React, Node.js, ASP.NET, Git, Vercel, Supabase, Turso</div>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
