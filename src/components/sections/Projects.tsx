@@ -1,6 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback, useMemo } from "react";
 import RevealText from "../animations/RevealText";
 
 const projects = [
@@ -46,22 +46,59 @@ interface CardProps {
 
 function ProjectCard({ p, i }: CardProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [spotlight, setSpotlight] = useState({ x: 0, y: 0 });
   const [hover, setHover] = useState(false);
 
-  const handleMove = (e: React.MouseEvent) => {
+  // Use MotionValues for high-performance animation (no re-renders)
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const sx = useMotionValue(0);
+  const sy = useMotionValue(0);
+
+  // Smooth springs for fluid motion
+  const springConfig = { stiffness: 150, damping: 25 };
+  const smoothMX = useSpring(mx, springConfig);
+  const smoothMY = useSpring(my, springConfig);
+  const smoothSX = useSpring(sx, { stiffness: 200, damping: 30 });
+  const smoothSY = useSpring(sy, { stiffness: 200, damping: 30 });
+
+  // Map mouse position to rotation
+  const rotateX = useTransform(smoothMY, [-0.5, 0.5], [6.5, -6.5]);
+  const rotateY = useTransform(smoothMX, [-0.5, 0.5], [-7.5, 7.5]);
+
+  const handleMove = useCallback((e: React.MouseEvent) => {
     if (!ref.current) return;
-    const r = ref.current.getBoundingClientRect();
-    const x = (e.clientX - r.left);
-    const y = (e.clientY - r.top);
+    const rect = ref.current.getBoundingClientRect();
     
-    const tiltX = (y / r.height - 0.5) * -6;
-    const tiltY = (x / r.width - 0.5) * 6;
+    // Normalized position for tilt (-0.5 to 0.5)
+    mx.set((e.clientX - (rect.left + rect.width / 2)) / rect.width);
+    my.set((e.clientY - (rect.top + rect.height / 2)) / rect.height);
     
-    setTilt({ x: tiltX, y: tiltY });
-    setSpotlight({ x, y });
-  };
+    // Pixel position for spotlight
+    sx.set(e.clientX - rect.left);
+    sy.set(e.clientY - rect.top);
+  }, [mx, my, sx, sy]);
+
+  const handleLeave = useCallback(() => {
+    setHover(false);
+    mx.set(0);
+    my.set(0);
+  }, [mx, my]);
+
+  // Performance-optimized spotlight gradient string
+  const spotlightGradient = useTransform(
+    [smoothSX, smoothSY],
+    ([x, y]) => `radial-gradient(400px circle at ${x}px ${y}px, hsl(var(--primary) / 0.12), transparent 80%)`
+  );
+  
+  const spotlightInnerGradient = useTransform(
+    [smoothSX, smoothSY],
+    ([x, y]) => `radial-gradient(150px circle at ${x}px ${y}px, hsl(var(--primary) / 0.25), transparent 100%)`
+  );
+
+  const innerMaskImage = useTransform(
+    [smoothSX, smoothSY],
+    ([x, y]) => `radial-gradient(150px circle at ${x}px ${y}px, black, transparent)`
+  );
 
   return (
     <motion.div
@@ -71,40 +108,40 @@ function ProjectCard({ p, i }: CardProps) {
       transition={{ duration: 1, delay: i * 0.18, ease: [0.22, 1, 0.36, 1] }}
       style={{ perspective: 1200 }}
     >
-        <div
+        <motion.div
           ref={ref}
           onMouseMove={handleMove}
           onMouseEnter={() => setHover(true)}
-          onMouseLeave={() => {
-            setTilt({ x: 0, y: 0 });
-            setHover(false);
-          }}
-          className={`tilt-card group relative flex flex-col h-full overflow-hidden rounded-2xl border ${p.border} bg-gradient-card backdrop-blur-xl ${
+          onMouseLeave={handleLeave}
+          className={`group relative flex flex-col h-full overflow-hidden rounded-2xl border ${p.border} bg-gradient-card backdrop-blur-xl transition-shadow duration-500 ${
             hover ? p.glow : "shadow-card"
           }`}
           style={{
-            transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(${hover ? 1.015 : 1})`,
-            transition: "transform 0.4s var(--ease-spring), box-shadow 0.4s ease",
+            rotateX,
+            rotateY,
+            scale: hover ? 1.02 : 1,
+            transformStyle: "preserve-3d",
+            willChange: "transform",
           }}
         >
           {/* Spotlight Effect */}
-          <div
-            className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-500"
+          <motion.div
+            className="pointer-events-none absolute inset-0 z-10"
             style={{
               opacity: hover ? 1 : 0,
-              background: `radial-gradient(400px circle at ${spotlight.x}px ${spotlight.y}px, hsl(var(--primary) / 0.1), transparent 80%)`,
+              background: spotlightGradient,
             }}
           />
-          <div
-            className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-500"
+          <motion.div
+            className="pointer-events-none absolute inset-0 z-10"
             style={{
               opacity: hover ? 0.4 : 0,
-              background: `radial-gradient(150px circle at ${spotlight.x}px ${spotlight.y}px, hsl(var(--primary) / 0.2), transparent 100%)`,
-              maskImage: `radial-gradient(150px circle at ${spotlight.x}px ${spotlight.y}px, black, transparent)`,
+              background: spotlightInnerGradient,
+              maskImage: innerMaskImage,
             }}
           >
              <div className="absolute inset-0 grid-overlay opacity-50" />
-          </div>
+          </motion.div>
 
           {/* Live preview iframe */}
           <div className="relative aspect-[16/10] w-full overflow-hidden bg-muted shrink-0">
@@ -192,16 +229,16 @@ function ProjectCard({ p, i }: CardProps) {
             </div>
           </div>
 
-        {/* Faux Reflection Effect */}
-        <div className="pointer-events-none absolute -bottom-full left-0 right-0 h-full bg-gradient-to-t from-transparent to-primary/5 opacity-0 group-hover:opacity-40 transition-opacity duration-700 blur-xl scale-x-110" />
+          {/* Faux Reflection Effect */}
+          <div className="pointer-events-none absolute -bottom-full left-0 right-0 h-full bg-gradient-to-t from-transparent to-primary/5 opacity-0 group-hover:opacity-40 transition-opacity duration-700 blur-xl scale-x-110" />
 
-        {/* Holographic shimmer on hover */}
-        <div
-          className={`pointer-events-none absolute inset-0 holo-shimmer transition-opacity duration-700 ${
-            hover ? "opacity-30" : "opacity-0"
-          }`}
-        />
-      </div>
+          {/* Holographic shimmer on hover */}
+          <div
+            className={`pointer-events-none absolute inset-0 holo-shimmer transition-opacity duration-700 ${
+              hover ? "opacity-30" : "opacity-0"
+            }`}
+          />
+        </motion.div>
     </motion.div>
   );
 }
