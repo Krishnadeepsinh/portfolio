@@ -14,7 +14,7 @@ const timeline = [
     icon: Code2,
     period: "2023 — Present",
     title: "Full Stack Engineer & AIML Explorer",
-    detail: "Building production-ready systems like Nexus Scientific and FleetFlow. Focusing on the intersection of scalable architecture and emerging AI.",
+    detail: "Building production-ready systems like Nexus Scientific, FleetFlow, and Audit Tracker. Focusing on the intersection of scalable architecture and emerging AI.",
   },
   {
     icon: Cpu,
@@ -205,6 +205,19 @@ const Resume = () => {
                           <ul className="mt-3 space-y-2 text-sm text-muted-foreground list-disc pl-4">
                             <li>Architected an intuitive dashboard for real-time logistics and vehicle monitoring.</li>
                             <li>Implemented complex data grids and real-time state synchronization using TypeScript.</li>
+                          </ul>
+                        </div>
+
+                        <div className="relative pl-6 border-l-2 border-primary/10 group">
+                          <div className="absolute -left-[5px] top-0 h-2 w-2 rounded-full bg-primary group-hover:shadow-glow-primary transition-all" />
+                          <div className="flex justify-between items-start">
+                            <h5 className="font-display font-bold text-lg text-foreground">Audit Tracker</h5>
+                            <span className="font-mono text-[9px] text-muted-foreground border border-white/10 px-2 py-0.5 rounded">Audit Desk System</span>
+                          </div>
+                          <p className="mt-2 text-sm text-muted-foreground leading-relaxed italic">Audit Management Platform</p>
+                          <ul className="mt-3 space-y-2 text-sm text-muted-foreground list-disc pl-4">
+                            <li>Built a high-performance work tracking system for audit professionals using Turso DB and Node.js.</li>
+                            <li>Integrated real-time task status tracking, secure staff data management, and automated audit trails.</li>
                           </ul>
                         </div>
                       </div>

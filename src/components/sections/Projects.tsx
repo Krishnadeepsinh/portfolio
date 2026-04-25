@@ -26,6 +26,17 @@ const projects = [
     glow: "shadow-glow-secondary",
     border: "border-secondary/30",
   },
+  {
+    title: "Audit Tracker",
+    subtitle: "Professional Audit Management",
+    description:
+      "A specialized work management system designed for audit firms. Features real-time task tracking, article assignment, and comprehensive audit history with a focus on data integrity and workflow efficiency.",
+    url: "https://audit-pro-ruddy.vercel.app/",
+    stack: ["React", "Turso DB", "Express", "Vercel"],
+    accent: "from-accent to-secondary",
+    glow: "shadow-glow-accent",
+    border: "border-accent/30",
+  },
 ];
 
 interface CardProps {
