@@ -18,18 +18,18 @@ import {
 } from "lucide-react";
 
 const skills = [
-  { name: "JavaScript", category: "Language", color: "from-yellow-400 to-orange-500", slug: "javascript" },
-  { name: "Python", category: "Language", color: "from-blue-400 to-yellow-300", slug: "python" },
-  { name: "Java", category: "Language", color: "from-orange-500 to-red-500", slug: "openjdk" },
-  { name: "C / C++", category: "Language", color: "from-blue-500 to-indigo-600", slug: "cplusplus" },
-  { name: "HTML5 / CSS3", category: "Frontend", color: "from-orange-400 to-pink-500", slug: "html5" },
-  { name: "PHP", category: "Backend", color: "from-indigo-500 to-purple-600", slug: "php" },
-  { name: "Supabase", category: "Backend", color: "from-emerald-400 to-teal-500", slug: "supabase" },
-  { name: "SQL / PL-SQL", category: "Database", color: "from-cyan-400 to-blue-500", slug: "postgresql" },
-  { name: "Git / GitHub", category: "Tooling", color: "from-orange-500 to-red-600", slug: "github" },
-  { name: "Vercel", category: "Deploy", color: "from-zinc-300 to-zinc-500", slug: "vercel" },
-  { name: "OOP / DSA", category: "Concepts", color: "from-violet-500 to-fuchsia-500", slug: "codio" },
-  { name: "ASP.NET", category: "Framework", color: "from-sky-500 to-blue-600", slug: "dotnet" },
+  { name: "JavaScript", category: "Language", color: "from-yellow-400 to-orange-500", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" },
+  { name: "Python", category: "Language", color: "from-blue-400 to-yellow-300", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" },
+  { name: "Java", category: "Language", color: "from-orange-500 to-red-500", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" },
+  { name: "C / C++", category: "Language", color: "from-blue-500 to-indigo-600", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg" },
+  { name: "HTML5 / CSS3", category: "Frontend", color: "from-orange-400 to-pink-500", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" },
+  { name: "PHP", category: "Backend", color: "from-indigo-500 to-purple-600", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" },
+  { name: "Supabase", category: "Backend", color: "from-emerald-400 to-teal-500", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg" },
+  { name: "SQL / PL-SQL", category: "Database", color: "from-cyan-400 to-blue-500", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" },
+  { name: "Git / GitHub", category: "Tooling", color: "from-orange-500 to-red-600", icon: "https://cdn.simpleicons.org/github/FFFFFF" },
+  { name: "Vercel", category: "Deploy", color: "from-zinc-300 to-zinc-500", icon: "https://cdn.simpleicons.org/vercel/FFFFFF" },
+  { name: "OOP / DSA", category: "Concepts", color: "from-violet-500 to-fuchsia-500", icon: "https://cdn.simpleicons.org/codio/FFFFFF" },
+  { name: "ASP.NET", category: "Framework", color: "from-sky-500 to-blue-600", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dot-net/dot-net-original.svg" },
 ];
 
 interface TiltCardProps {
@@ -118,7 +118,7 @@ function TiltCard({ skill, index }: TiltCardProps) {
             <div className="flex items-center gap-3">
               <div className={`p-2 rounded-md bg-white/5 border border-white/10 flex items-center justify-center`}>
                 <img 
-                  src={`https://cdn.simpleicons.org/${skill.slug}/FFFFFF`} 
+                  src={skill.icon} 
                   alt={skill.name}
                   className="w-5 h-5 object-contain opacity-80 group-hover:opacity-100 transition-opacity"
                 />
